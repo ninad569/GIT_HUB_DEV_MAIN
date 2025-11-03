@@ -40,7 +40,7 @@ wwv_flow_imp_page.create_page_plug(
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(77343140142086645486)
-,p_plug_name=>'Bubble'
+,p_plug_name=>'Bubble working'
 ,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
 ,p_escape_on_http_output=>'Y'
 ,p_plug_template=>4072358936313175081
@@ -92,15 +92,15 @@ wwv_flow_imp_page.create_jet_chart_series(
  p_id=>wwv_flow_imp.id(77343140385219645488)
 ,p_chart_id=>wwv_flow_imp.id(77343140304233645487)
 ,p_seq=>10
-,p_name=>'2011'
+,p_name=>'2025'
 ,p_data_source_type=>'SQL'
 ,p_data_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select country country,',
 '       name,',
 '       (employee/100) employee,',
 '       (employer/100) employer,',
-'       (total/100) total',
-' from eba_demo_chart_stats'))
+'       (total/100*1) total',
+' from eba_demo_chart_stats '))
 ,p_items_x_column_name=>'EMPLOYEE'
 ,p_items_y_column_name=>'EMPLOYER'
 ,p_items_z_column_name=>'TOTAL'
@@ -110,8 +110,6 @@ wwv_flow_imp_page.create_jet_chart_series(
 ,p_marker_shape=>'auto'
 ,p_items_label_rendered=>true
 ,p_items_label_position=>'center'
-,p_items_label_display_as=>'PERCENT'
-,p_threshold_display=>'onIndicator'
 ,p_link_target=>'javascript:$s("P11_POINT",''&COUNTRY.  Total Contributions: $&TOTAL.'');'
 ,p_link_target_type=>'REDIRECT_URL'
 );
