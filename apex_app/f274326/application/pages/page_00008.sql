@@ -257,7 +257,7 @@ wwv_flow_imp_page.create_jet_chart_series(
  p_id=>wwv_flow_imp.id(77488488822522725765)
 ,p_chart_id=>wwv_flow_imp.id(77488487618485725755)
 ,p_seq=>10
-,p_name=>'2011'
+,p_name=>'2025'
 ,p_data_source_type=>'SQL'
 ,p_data_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select country country,',
@@ -276,8 +276,6 @@ wwv_flow_imp_page.create_jet_chart_series(
 ,p_marker_rendered=>'auto'
 ,p_marker_shape=>'star'
 ,p_items_label_rendered=>false
-,p_items_label_display_as=>'PERCENT'
-,p_threshold_display=>'onIndicator'
 );
 wwv_flow_imp_page.create_jet_chart_axis(
  p_id=>wwv_flow_imp.id(77488488420569725763)
