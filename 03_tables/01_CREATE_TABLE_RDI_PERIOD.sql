@@ -18,7 +18,7 @@ BEGIN
       USING INDEX  ENABLE
        )
         ';
-        DBMS_OUTPUT.PUT_LINE('TABLE "rdi_PERIOD" created successfully.');
+        DBMS_OUTPUT.PUT_LINE('TABLE "RDI_PERIOD" created successfully.');
     ELSE
         DBMS_OUTPUT.PUT_LINE('TABLE "rdi_PERIOD" already exists.');
     END IF;
