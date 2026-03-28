@@ -1,0 +1,1058 @@
+prompt --application/pages/page_00041
+begin
+--   Manifest
+--     PAGE: 00041
+--   Manifest End
+wwv_flow_imp.component_begin (
+ p_version_yyyy_mm_dd=>'2024.11.30'
+,p_release=>'24.2.8'
+,p_default_workspace_id=>76915847067537899948
+,p_default_application_id=>274326
+,p_default_id_offset=>76916220240599916839
+,p_default_owner=>'WKSP_WBGAPEXDEV'
+);
+wwv_flow_imp_page.create_page(
+ p_id=>41
+,p_name=>'Box Plot'
+,p_alias=>'BOX-PLOT'
+,p_step_title=>'Box Plot'
+,p_autocomplete_on_off=>'OFF'
+,p_page_template_options=>'#DEFAULT#'
+,p_protection_level=>'C'
+,p_page_component_map=>'03'
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(77632407667636933862)
+,p_plug_name=>'About this page'
+,p_icon_css_classes=>'fa-box-plot-chart'
+,p_region_template_options=>'#DEFAULT#:t-Alert--horizontal:t-Alert--customIcons:t-Alert--info'
+,p_plug_template=>2040683448887306517
+,p_plug_display_sequence=>10
+,p_plug_item_display_point=>'BELOW'
+,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'<p>&PRODUCT_NAME. native Box Plot charts, using Oracle JET Data Visualizations, are showcased on this page. The Box Plot chart is useful for reading statistical data, and follows a specific formula for representing the data on the chart.</p><br/><str'
+||'ong>How to Read a Box Plot chart</strong><p/>',
+'Review the image explaining the sections of a <a href="#APP_IMAGES#box-plot-explained.gif" target="_blank">Box Plot chart</a>.',
+'Here are the main components of a Box Plot:<p/>',
+'',
+'<ul>',
+'<li><strong>High/Maximum Value</strong><br/>',
+'<li><strong>1st Quartile</strong> - i.e. the 25% percentile of data. This means that 25% of the data are below this value.</li>',
+'<li><strong>Median/2nd Quartile</strong> - middle of the dataset i.e 50% of the data is greater than this value.</li>',
+'<li><strong>3rd Quartile</strong> - i.e. the 75% percentile of data. This means that 25% of the data are above this value.</li>',
+'<li><strong>Low/Minimum Value</strong></li>',
+'<li><strong>Outliers</strong> - values that fall outside of the quartile ranges. The Upper Outliers are more than 3/2 of the 3rd Quartile. The Lower Outliers are less than 3/2 times the 1st Quartile.</li>',
+'</ul>',
+''))
+,p_plug_query_headings_type=>'QUERY_COLUMNS'
+,p_plug_query_num_rows=>15
+,p_plug_query_num_rows_type=>'NEXT_PREVIOUS_LINKS'
+,p_plug_query_show_nulls_as=>' - '
+,p_pagination_display_position=>'BOTTOM_RIGHT'
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'expand_shortcuts', 'N',
+  'output_as', 'HTML',
+  'show_line_breaks', 'N')).to_clob
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(77675779306611681840)
+,p_plug_name=>'Survey Results - Normalised Tables'
+,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
+,p_escape_on_http_output=>'Y'
+,p_plug_template=>4072358936313175081
+,p_plug_display_sequence=>50
+,p_include_in_reg_disp_sel_yn=>'Y'
+,p_location=>null
+,p_plug_source_type=>'NATIVE_JET_CHART'
+,p_plug_query_num_rows=>15
+,p_plug_header=>'The underlying table structure is normalised, storing the results of each new sample in one column, identified by a unique ID. This example demonstrates how to generate a Box Plot on such a table structure.<p/>'
+);
+wwv_flow_imp_page.create_jet_chart(
+ p_id=>wwv_flow_imp.id(77205355452074916182)
+,p_region_id=>wwv_flow_imp.id(77675779306611681840)
+,p_chart_type=>'boxPlot'
+,p_animation_on_display=>'none'
+,p_animation_on_data_change=>'none'
+,p_orientation=>'vertical'
+,p_data_cursor=>'auto'
+,p_data_cursor_behavior=>'auto'
+,p_hide_and_show_behavior=>'none'
+,p_hover_behavior=>'none'
+,p_stack=>'off'
+,p_stack_label=>'off'
+,p_connect_nulls=>'Y'
+,p_value_position=>'auto'
+,p_sorting=>'label-asc'
+,p_fill_multi_series_gaps=>true
+,p_zoom_and_scroll=>'off'
+,p_tooltip_rendered=>'Y'
+,p_show_series_name=>true
+,p_show_group_name=>true
+,p_show_value=>true
+,p_show_label=>true
+,p_show_row=>true
+,p_show_start=>true
+,p_show_end=>true
+,p_show_progress=>true
+,p_show_baseline=>true
+,p_legend_rendered=>'on'
+,p_legend_position=>'auto'
+,p_overview_rendered=>'off'
+,p_horizontal_grid=>'auto'
+,p_vertical_grid=>'auto'
+,p_gauge_orientation=>'circular'
+,p_gauge_plot_area=>'on'
+,p_show_gauge_value=>true
+);
+wwv_flow_imp_page.create_jet_chart_series(
+ p_id=>wwv_flow_imp.id(77205357188492916185)
+,p_chart_id=>wwv_flow_imp.id(77205355452074916182)
+,p_seq=>10
+,p_name=>'Survey '
+,p_data_source_type=>'SQL'
+,p_data_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select b.sample_name, a.response ',
+'from eba_demo_chart_sample_data a, eba_demo_chart_sample_names b',
+'where a.sample_id = b.id'))
+,p_series_type=>'boxPlot'
+,p_items_value_column_name=>'RESPONSE'
+,p_items_label_column_name=>'SAMPLE_NAME'
+,p_color=>'#93F0B8'
+,p_line_type=>'auto'
+,p_marker_rendered=>'auto'
+,p_marker_shape=>'auto'
+,p_assigned_to_y2=>'off'
+,p_items_label_rendered=>false
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
+);
+wwv_flow_imp_page.create_jet_chart_axis(
+ p_id=>wwv_flow_imp.id(77205356556158916184)
+,p_chart_id=>wwv_flow_imp.id(77205355452074916182)
+,p_axis=>'y'
+,p_is_rendered=>'on'
+,p_format_scaling=>'auto'
+,p_scaling=>'linear'
+,p_baseline_scaling=>'zero'
+,p_position=>'auto'
+,p_major_tick_rendered=>'on'
+,p_minor_tick_rendered=>'off'
+,p_tick_label_rendered=>'on'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
+);
+wwv_flow_imp_page.create_jet_chart_axis(
+ p_id=>wwv_flow_imp.id(77205355922800916183)
+,p_chart_id=>wwv_flow_imp.id(77205355452074916182)
+,p_axis=>'x'
+,p_is_rendered=>'on'
+,p_format_scaling=>'auto'
+,p_scaling=>'linear'
+,p_baseline_scaling=>'zero'
+,p_major_tick_rendered=>'on'
+,p_minor_tick_rendered=>'off'
+,p_tick_label_rendered=>'on'
+,p_tick_label_rotation=>'auto'
+,p_tick_label_position=>'outside'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(77675779783341681845)
+,p_plug_name=>'Survey Sample Data - Time Axis'
+,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
+,p_escape_on_http_output=>'Y'
+,p_plug_template=>4072358936313175081
+,p_plug_display_sequence=>60
+,p_include_in_reg_disp_sel_yn=>'Y'
+,p_location=>null
+,p_plug_source_type=>'NATIVE_JET_CHART'
+,p_plug_query_num_rows=>15
+,p_plug_header=>'The underlying table structure is  normalised, storing the results of each new sample in one column, identified by a unique ID date.  This example demonstrates how to generate a Box Plot, with Time Axis enabled.'
+);
+wwv_flow_imp_page.create_jet_chart(
+ p_id=>wwv_flow_imp.id(77205358054424916204)
+,p_region_id=>wwv_flow_imp.id(77675779783341681845)
+,p_chart_type=>'boxPlot'
+,p_animation_on_display=>'none'
+,p_animation_on_data_change=>'none'
+,p_orientation=>'vertical'
+,p_data_cursor=>'auto'
+,p_data_cursor_behavior=>'auto'
+,p_hide_and_show_behavior=>'none'
+,p_hover_behavior=>'none'
+,p_stack=>'off'
+,p_stack_label=>'off'
+,p_connect_nulls=>'Y'
+,p_value_position=>'auto'
+,p_sorting=>'label-asc'
+,p_fill_multi_series_gaps=>true
+,p_zoom_and_scroll=>'off'
+,p_tooltip_rendered=>'Y'
+,p_show_series_name=>true
+,p_show_group_name=>true
+,p_show_value=>true
+,p_show_label=>true
+,p_show_row=>true
+,p_show_start=>true
+,p_show_end=>true
+,p_show_progress=>true
+,p_show_baseline=>true
+,p_legend_rendered=>'on'
+,p_legend_position=>'auto'
+,p_overview_rendered=>'off'
+,p_time_axis_type=>'enabled'
+,p_horizontal_grid=>'auto'
+,p_vertical_grid=>'auto'
+,p_gauge_orientation=>'circular'
+,p_gauge_plot_area=>'on'
+,p_show_gauge_value=>true
+);
+wwv_flow_imp_page.create_jet_chart_series(
+ p_id=>wwv_flow_imp.id(77205359781546916205)
+,p_chart_id=>wwv_flow_imp.id(77205358054424916204)
+,p_seq=>10
+,p_name=>'Surveys by Date'
+,p_data_source_type=>'SQL'
+,p_data_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select b.sample_date, a.response ',
+'from eba_demo_chart_sample_data a, eba_demo_chart_sample_names b',
+'where a.sample_id = b.id'))
+,p_series_type=>'boxPlot'
+,p_items_value_column_name=>'RESPONSE'
+,p_items_label_column_name=>'SAMPLE_DATE'
+,p_color=>'#3589e3'
+,p_q2_color=>'#b0dea6'
+,p_q3_color=>'#edd976'
+,p_line_type=>'auto'
+,p_marker_rendered=>'auto'
+,p_marker_shape=>'auto'
+,p_assigned_to_y2=>'off'
+,p_items_label_rendered=>false
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
+);
+wwv_flow_imp_page.create_jet_chart_axis(
+ p_id=>wwv_flow_imp.id(77205359161233916205)
+,p_chart_id=>wwv_flow_imp.id(77205358054424916204)
+,p_axis=>'y'
+,p_is_rendered=>'on'
+,p_format_scaling=>'auto'
+,p_scaling=>'linear'
+,p_baseline_scaling=>'zero'
+,p_position=>'auto'
+,p_major_tick_rendered=>'on'
+,p_minor_tick_rendered=>'off'
+,p_tick_label_rendered=>'on'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
+);
+wwv_flow_imp_page.create_jet_chart_axis(
+ p_id=>wwv_flow_imp.id(77205358521220916204)
+,p_chart_id=>wwv_flow_imp.id(77205358054424916204)
+,p_axis=>'x'
+,p_is_rendered=>'on'
+,p_format_scaling=>'auto'
+,p_scaling=>'linear'
+,p_baseline_scaling=>'zero'
+,p_major_tick_rendered=>'on'
+,p_minor_tick_rendered=>'off'
+,p_tick_label_rendered=>'on'
+,p_tick_label_rotation=>'auto'
+,p_tick_label_position=>'outside'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(77910243806876409873)
+,p_plug_name=>'Survey Results'
+,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
+,p_escape_on_http_output=>'Y'
+,p_plug_template=>4072358936313175081
+,p_plug_display_sequence=>40
+,p_include_in_reg_disp_sel_yn=>'Y'
+,p_location=>null
+,p_plug_source_type=>'NATIVE_JET_CHART'
+,p_plug_query_num_rows=>15
+);
+wwv_flow_imp_page.create_jet_chart(
+ p_id=>wwv_flow_imp.id(77205360972919916208)
+,p_region_id=>wwv_flow_imp.id(77910243806876409873)
+,p_chart_type=>'boxPlot'
+,p_animation_on_display=>'none'
+,p_animation_on_data_change=>'none'
+,p_orientation=>'vertical'
+,p_data_cursor=>'auto'
+,p_data_cursor_behavior=>'auto'
+,p_hide_and_show_behavior=>'none'
+,p_hover_behavior=>'none'
+,p_stack=>'off'
+,p_stack_label=>'off'
+,p_connect_nulls=>'Y'
+,p_value_position=>'auto'
+,p_sorting=>'label-asc'
+,p_fill_multi_series_gaps=>true
+,p_zoom_and_scroll=>'off'
+,p_tooltip_rendered=>'Y'
+,p_show_series_name=>true
+,p_show_group_name=>true
+,p_show_value=>true
+,p_show_label=>true
+,p_show_row=>true
+,p_show_start=>true
+,p_show_end=>true
+,p_show_progress=>true
+,p_show_baseline=>true
+,p_legend_rendered=>'on'
+,p_legend_position=>'auto'
+,p_overview_rendered=>'off'
+,p_horizontal_grid=>'auto'
+,p_vertical_grid=>'auto'
+,p_gauge_orientation=>'circular'
+,p_gauge_plot_area=>'on'
+,p_show_gauge_value=>true
+);
+wwv_flow_imp_page.create_jet_chart_series(
+ p_id=>wwv_flow_imp.id(77205362671280916209)
+,p_chart_id=>wwv_flow_imp.id(77205360972919916208)
+,p_seq=>10
+,p_name=>'Samples'
+,p_data_source_type=>'SQL'
+,p_data_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select * from eba_demo_chart_samples ',
+'unpivot (value for sample in (sample1 as ''Sample 1'', ',
+'                              sample2 as ''Sample 2'' , ',
+'                              sample3 as ''Sample 3'', ',
+'                              sample4 as ''Sample 4'', ',
+'                              sample5 as ''Sample 5''))'))
+,p_series_type=>'boxPlot'
+,p_series_name_column_name=>'SAMPLE'
+,p_items_value_column_name=>'VALUE'
+,p_items_label_column_name=>'SAMPLE'
+,p_line_type=>'auto'
+,p_marker_rendered=>'auto'
+,p_marker_shape=>'auto'
+,p_assigned_to_y2=>'off'
+,p_items_label_rendered=>false
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
+,p_link_target=>'f?p=&APP_ID.:1:&SESSION.::&DEBUG.:RP::'
+,p_link_target_type=>'REDIRECT_PAGE'
+);
+wwv_flow_imp_page.create_jet_chart_axis(
+ p_id=>wwv_flow_imp.id(77205361440550916208)
+,p_chart_id=>wwv_flow_imp.id(77205360972919916208)
+,p_axis=>'x'
+,p_is_rendered=>'on'
+,p_format_scaling=>'auto'
+,p_scaling=>'linear'
+,p_baseline_scaling=>'zero'
+,p_major_tick_rendered=>'on'
+,p_minor_tick_rendered=>'off'
+,p_tick_label_rendered=>'on'
+,p_tick_label_rotation=>'auto'
+,p_tick_label_position=>'outside'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
+);
+wwv_flow_imp_page.create_jet_chart_axis(
+ p_id=>wwv_flow_imp.id(77205362049271916208)
+,p_chart_id=>wwv_flow_imp.id(77205360972919916208)
+,p_axis=>'y'
+,p_is_rendered=>'on'
+,p_format_scaling=>'auto'
+,p_scaling=>'linear'
+,p_baseline_scaling=>'zero'
+,p_position=>'auto'
+,p_major_tick_rendered=>'on'
+,p_minor_tick_rendered=>'off'
+,p_tick_label_rendered=>'on'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(77172546874574883307)
+,p_plug_name=>'Information'
+,p_parent_plug_id=>wwv_flow_imp.id(77910243806876409873)
+,p_region_template_options=>'#DEFAULT#:t-Region--hideHeader js-addHiddenHeadingRoleDesc:t-Region--textContent:t-Region--scrollBody'
+,p_plug_template=>4072358936313175081
+,p_plug_display_sequence=>20
+,p_plug_new_grid_row=>false
+,p_plug_display_point=>'SUB_REGIONS'
+,p_plug_item_display_point=>'BELOW'
+,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'<p/><p/><p/><p/>',
+'The underlying table structure is not normalised, storing the results of each new sample in a new column.  This structure may be common to some customers, so this example demonstrates how to generate a Box Plot on such a table structure.  This chart '
+||'also uses the ''Series Name'' column mapping, to treat each row returned as a separate series, thus applying a different colour to each series represented on the chart.',
+'<p/>',
+'The sample data used here has been obtained from an external Box Plot utility site.<p/>'))
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'expand_shortcuts', 'N',
+  'output_as', 'HTML')).to_clob
+);
+wwv_flow_imp_page.create_report_region(
+ p_id=>wwv_flow_imp.id(77675781018668681858)
+,p_name=>'Samples Report Data'
+,p_parent_plug_id=>wwv_flow_imp.id(77910243806876409873)
+,p_template=>4072358936313175081
+,p_display_sequence=>10
+,p_region_template_options=>'#DEFAULT#:t-Region--noBorder:t-Region--scrollBody'
+,p_component_template_options=>'#DEFAULT#:t-Report--altRowsDefault:t-Report--rowHighlight'
+,p_display_point=>'SUB_REGIONS'
+,p_source_type=>'NATIVE_SQL_REPORT'
+,p_query_type=>'TABLE'
+,p_query_table=>'EBA_DEMO_CHART_SAMPLES'
+,p_include_rowid_column=>true
+,p_ajax_enabled=>'Y'
+,p_lazy_loading=>false
+,p_query_row_template=>2538654340625403440
+,p_query_num_rows=>5
+,p_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_query_show_nulls_as=>'-'
+,p_query_num_rows_type=>'ROW_RANGES_IN_SELECT_LIST'
+,p_pagination_display_position=>'BOTTOM_RIGHT'
+,p_csv_output=>'N'
+,p_prn_output=>'N'
+,p_sort_null=>'L'
+,p_plug_query_strip_html=>'N'
+);
+wwv_flow_imp_page.create_report_columns(
+ p_id=>wwv_flow_imp.id(77205363545441916211)
+,p_query_column_id=>1
+,p_column_alias=>'SAMPLE1'
+,p_column_display_sequence=>1
+,p_column_heading=>'Sample1'
+,p_disable_sort_column=>'N'
+,p_derived_column=>'N'
+,p_include_in_export=>'Y'
+);
+wwv_flow_imp_page.create_report_columns(
+ p_id=>wwv_flow_imp.id(77205363946501916211)
+,p_query_column_id=>2
+,p_column_alias=>'SAMPLE2'
+,p_column_display_sequence=>2
+,p_column_heading=>'Sample2'
+,p_disable_sort_column=>'N'
+,p_derived_column=>'N'
+,p_include_in_export=>'Y'
+);
+wwv_flow_imp_page.create_report_columns(
+ p_id=>wwv_flow_imp.id(77205364340377916212)
+,p_query_column_id=>3
+,p_column_alias=>'SAMPLE3'
+,p_column_display_sequence=>3
+,p_column_heading=>'Sample3'
+,p_disable_sort_column=>'N'
+,p_derived_column=>'N'
+,p_include_in_export=>'Y'
+);
+wwv_flow_imp_page.create_report_columns(
+ p_id=>wwv_flow_imp.id(77205364760765916212)
+,p_query_column_id=>4
+,p_column_alias=>'SAMPLE4'
+,p_column_display_sequence=>4
+,p_column_heading=>'Sample4'
+,p_disable_sort_column=>'N'
+,p_derived_column=>'N'
+,p_include_in_export=>'Y'
+);
+wwv_flow_imp_page.create_report_columns(
+ p_id=>wwv_flow_imp.id(77205365158228916212)
+,p_query_column_id=>5
+,p_column_alias=>'SAMPLE5'
+,p_column_display_sequence=>5
+,p_column_heading=>'Sample5'
+,p_disable_sort_column=>'N'
+,p_derived_column=>'N'
+,p_include_in_export=>'Y'
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(77910686140075535197)
+,p_plug_name=>'Breadcrumbs'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>2531463326621247859
+,p_plug_display_sequence=>10
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_imp.id(85116919603826146773)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>4072363345357175094
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(77910698103041607347)
+,p_plug_name=>'RDS'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>4501440665235496320
+,p_plug_display_sequence=>30
+,p_include_in_reg_disp_sel_yn=>'Y'
+,p_plug_new_grid_row=>false
+,p_plug_new_grid_column=>false
+,p_plug_source_type=>'NATIVE_DISPLAY_SELECTOR'
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'display_region_icons', 'N',
+  'include_show_all', 'Y',
+  'rds_mode', 'STANDARD',
+  'remember_selection', 'NO')).to_clob
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(78190598214864951660)
+,p_plug_name=>'Grades - Single Series'
+,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
+,p_escape_on_http_output=>'Y'
+,p_plug_template=>4072358936313175081
+,p_plug_display_sequence=>70
+,p_include_in_reg_disp_sel_yn=>'Y'
+,p_location=>null
+,p_plug_source_type=>'NATIVE_JET_CHART'
+,p_plug_query_num_rows=>15
+);
+wwv_flow_imp_page.create_jet_chart(
+ p_id=>wwv_flow_imp.id(77205659021328539323)
+,p_region_id=>wwv_flow_imp.id(78190598214864951660)
+,p_chart_type=>'boxPlot'
+,p_animation_on_display=>'none'
+,p_animation_on_data_change=>'none'
+,p_orientation=>'vertical'
+,p_data_cursor=>'auto'
+,p_data_cursor_behavior=>'auto'
+,p_hide_and_show_behavior=>'none'
+,p_hover_behavior=>'none'
+,p_stack=>'off'
+,p_stack_label=>'off'
+,p_connect_nulls=>'Y'
+,p_value_position=>'auto'
+,p_sorting=>'label-asc'
+,p_fill_multi_series_gaps=>true
+,p_zoom_and_scroll=>'off'
+,p_tooltip_rendered=>'Y'
+,p_show_series_name=>true
+,p_show_group_name=>true
+,p_show_value=>true
+,p_show_label=>true
+,p_show_row=>true
+,p_show_start=>true
+,p_show_end=>true
+,p_show_progress=>true
+,p_show_baseline=>true
+,p_legend_rendered=>'on'
+,p_legend_position=>'auto'
+,p_overview_rendered=>'off'
+,p_horizontal_grid=>'auto'
+,p_vertical_grid=>'auto'
+,p_gauge_orientation=>'circular'
+,p_gauge_plot_area=>'on'
+,p_show_gauge_value=>true
+);
+wwv_flow_imp_page.create_jet_chart_series(
+ p_id=>wwv_flow_imp.id(77205660775662539329)
+,p_chart_id=>wwv_flow_imp.id(77205659021328539323)
+,p_seq=>10
+,p_name=>'School A'
+,p_data_source_type=>'SQL'
+,p_data_source=>'select course, schoola from eba_demo_chart_grades'
+,p_series_type=>'boxPlot'
+,p_items_value_column_name=>'SCHOOLA'
+,p_items_label_column_name=>'COURSE'
+,p_line_type=>'auto'
+,p_marker_rendered=>'auto'
+,p_marker_shape=>'auto'
+,p_assigned_to_y2=>'off'
+,p_items_label_rendered=>false
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
+);
+wwv_flow_imp_page.create_jet_chart_axis(
+ p_id=>wwv_flow_imp.id(77205660215089539327)
+,p_chart_id=>wwv_flow_imp.id(77205659021328539323)
+,p_axis=>'x'
+,p_is_rendered=>'on'
+,p_format_scaling=>'auto'
+,p_scaling=>'linear'
+,p_baseline_scaling=>'zero'
+,p_major_tick_rendered=>'on'
+,p_minor_tick_rendered=>'off'
+,p_tick_label_rendered=>'on'
+,p_tick_label_rotation=>'auto'
+,p_tick_label_position=>'outside'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
+);
+wwv_flow_imp_page.create_jet_chart_axis(
+ p_id=>wwv_flow_imp.id(77205659587675539326)
+,p_chart_id=>wwv_flow_imp.id(77205659021328539323)
+,p_axis=>'y'
+,p_is_rendered=>'on'
+,p_format_scaling=>'auto'
+,p_scaling=>'linear'
+,p_baseline_scaling=>'zero'
+,p_position=>'auto'
+,p_major_tick_rendered=>'on'
+,p_minor_tick_rendered=>'off'
+,p_tick_label_rendered=>'on'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(78190601294011953287)
+,p_plug_name=>'Grades - Multi-Series'
+,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
+,p_escape_on_http_output=>'Y'
+,p_plug_template=>4072358936313175081
+,p_plug_display_sequence=>80
+,p_include_in_reg_disp_sel_yn=>'Y'
+,p_query_type=>'SQL'
+,p_plug_source=>'select * from eba_demo_chart_grades'
+,p_plug_source_type=>'NATIVE_JET_CHART'
+,p_plug_query_num_rows=>15
+);
+wwv_flow_imp_page.create_jet_chart(
+ p_id=>wwv_flow_imp.id(77205661688583540942)
+,p_region_id=>wwv_flow_imp.id(78190601294011953287)
+,p_chart_type=>'boxPlot'
+,p_animation_on_display=>'none'
+,p_animation_on_data_change=>'none'
+,p_orientation=>'vertical'
+,p_data_cursor=>'auto'
+,p_data_cursor_behavior=>'auto'
+,p_hide_and_show_behavior=>'none'
+,p_hover_behavior=>'none'
+,p_stack=>'off'
+,p_stack_label=>'off'
+,p_connect_nulls=>'Y'
+,p_value_position=>'auto'
+,p_sorting=>'label-asc'
+,p_fill_multi_series_gaps=>true
+,p_zoom_and_scroll=>'off'
+,p_tooltip_rendered=>'Y'
+,p_show_series_name=>true
+,p_show_group_name=>true
+,p_show_value=>true
+,p_show_label=>true
+,p_show_row=>true
+,p_show_start=>true
+,p_show_end=>true
+,p_show_progress=>true
+,p_show_baseline=>true
+,p_legend_rendered=>'on'
+,p_legend_position=>'auto'
+,p_overview_rendered=>'off'
+,p_horizontal_grid=>'auto'
+,p_vertical_grid=>'auto'
+,p_gauge_orientation=>'circular'
+,p_gauge_plot_area=>'on'
+,p_show_gauge_value=>true
+);
+wwv_flow_imp_page.create_jet_chart_series(
+ p_id=>wwv_flow_imp.id(77205663349101540943)
+,p_chart_id=>wwv_flow_imp.id(77205661688583540942)
+,p_seq=>10
+,p_name=>'School A'
+,p_location=>'REGION_SOURCE'
+,p_series_type=>'boxPlot'
+,p_items_value_column_name=>'SCHOOLA'
+,p_items_label_column_name=>'COURSE'
+,p_line_type=>'auto'
+,p_marker_rendered=>'auto'
+,p_marker_shape=>'auto'
+,p_assigned_to_y2=>'off'
+,p_items_label_rendered=>false
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
+);
+wwv_flow_imp_page.create_jet_chart_series(
+ p_id=>wwv_flow_imp.id(77205663967023540943)
+,p_chart_id=>wwv_flow_imp.id(77205661688583540942)
+,p_seq=>20
+,p_name=>'School B'
+,p_location=>'REGION_SOURCE'
+,p_series_type=>'boxPlot'
+,p_items_value_column_name=>'SCHOOLB'
+,p_items_label_column_name=>'COURSE'
+,p_line_type=>'auto'
+,p_marker_rendered=>'auto'
+,p_marker_shape=>'auto'
+,p_assigned_to_y2=>'off'
+,p_items_label_rendered=>false
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
+);
+wwv_flow_imp_page.create_jet_chart_series(
+ p_id=>wwv_flow_imp.id(77205664593041540943)
+,p_chart_id=>wwv_flow_imp.id(77205661688583540942)
+,p_seq=>30
+,p_name=>'School C'
+,p_location=>'REGION_SOURCE'
+,p_series_type=>'boxPlot'
+,p_items_value_column_name=>'SCHOOLC'
+,p_items_label_column_name=>'COURSE'
+,p_line_type=>'auto'
+,p_marker_rendered=>'auto'
+,p_marker_shape=>'auto'
+,p_assigned_to_y2=>'off'
+,p_items_label_rendered=>false
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
+);
+wwv_flow_imp_page.create_jet_chart_axis(
+ p_id=>wwv_flow_imp.id(77205662774380540942)
+,p_chart_id=>wwv_flow_imp.id(77205661688583540942)
+,p_axis=>'y'
+,p_is_rendered=>'on'
+,p_format_scaling=>'auto'
+,p_scaling=>'linear'
+,p_baseline_scaling=>'zero'
+,p_position=>'auto'
+,p_major_tick_rendered=>'on'
+,p_minor_tick_rendered=>'off'
+,p_tick_label_rendered=>'on'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
+);
+wwv_flow_imp_page.create_jet_chart_axis(
+ p_id=>wwv_flow_imp.id(77205662155599540942)
+,p_chart_id=>wwv_flow_imp.id(77205661688583540942)
+,p_axis=>'x'
+,p_is_rendered=>'on'
+,p_format_scaling=>'auto'
+,p_scaling=>'linear'
+,p_baseline_scaling=>'zero'
+,p_major_tick_rendered=>'on'
+,p_minor_tick_rendered=>'off'
+,p_tick_label_rendered=>'on'
+,p_tick_label_rotation=>'auto'
+,p_tick_label_position=>'outside'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(78191057656889152465)
+,p_plug_name=>'Grades - Mixed Series Types'
+,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
+,p_escape_on_http_output=>'Y'
+,p_plug_template=>4072358936313175081
+,p_plug_display_sequence=>90
+,p_include_in_reg_disp_sel_yn=>'Y'
+,p_location=>null
+,p_plug_source_type=>'NATIVE_JET_CHART'
+,p_plug_query_num_rows=>15
+,p_plug_header=>'The visibility of the joined line will only work when there is 1 x ''Box Plot'' series defined for the given chart.  Where there is more than 1 series of type ''Box Plot'', alongside a ''Line'' series, then the line will not be joined.'
+);
+wwv_flow_imp_page.create_jet_chart(
+ p_id=>wwv_flow_imp.id(77205665448496542663)
+,p_region_id=>wwv_flow_imp.id(78191057656889152465)
+,p_chart_type=>'boxPlot'
+,p_animation_on_display=>'none'
+,p_animation_on_data_change=>'none'
+,p_orientation=>'vertical'
+,p_data_cursor=>'auto'
+,p_data_cursor_behavior=>'auto'
+,p_hide_and_show_behavior=>'none'
+,p_hover_behavior=>'none'
+,p_stack=>'off'
+,p_stack_label=>'off'
+,p_connect_nulls=>'Y'
+,p_value_position=>'auto'
+,p_sorting=>'label-asc'
+,p_fill_multi_series_gaps=>true
+,p_zoom_and_scroll=>'off'
+,p_tooltip_rendered=>'Y'
+,p_show_series_name=>true
+,p_show_group_name=>true
+,p_show_value=>true
+,p_show_label=>true
+,p_show_row=>true
+,p_show_start=>true
+,p_show_end=>true
+,p_show_progress=>true
+,p_show_baseline=>true
+,p_legend_rendered=>'on'
+,p_legend_position=>'auto'
+,p_overview_rendered=>'off'
+,p_horizontal_grid=>'auto'
+,p_vertical_grid=>'auto'
+,p_gauge_orientation=>'circular'
+,p_gauge_plot_area=>'on'
+,p_show_gauge_value=>true
+);
+wwv_flow_imp_page.create_jet_chart_series(
+ p_id=>wwv_flow_imp.id(77205667186969542667)
+,p_chart_id=>wwv_flow_imp.id(77205665448496542663)
+,p_seq=>10
+,p_name=>'School A'
+,p_data_source_type=>'SQL'
+,p_data_source=>'select course, schoola from eba_demo_chart_grades'
+,p_series_type=>'boxPlot'
+,p_items_value_column_name=>'SCHOOLA'
+,p_items_label_column_name=>'COURSE'
+,p_line_type=>'auto'
+,p_marker_rendered=>'auto'
+,p_marker_shape=>'auto'
+,p_assigned_to_y2=>'off'
+,p_items_label_rendered=>false
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
+);
+wwv_flow_imp_page.create_jet_chart_series(
+ p_id=>wwv_flow_imp.id(77205667786287542668)
+,p_chart_id=>wwv_flow_imp.id(77205665448496542663)
+,p_seq=>20
+,p_name=>'Median Grades'
+,p_data_source_type=>'SQL'
+,p_data_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select course, median(schoola) ',
+'from eba_demo_chart_grades',
+'group by course'))
+,p_series_type=>'line'
+,p_items_value_column_name=>'MEDIAN(SCHOOLA)'
+,p_items_label_column_name=>'COURSE'
+,p_line_type=>'curved'
+,p_marker_rendered=>'on'
+,p_marker_shape=>'auto'
+,p_assigned_to_y2=>'off'
+,p_items_label_rendered=>false
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
+);
+wwv_flow_imp_page.create_jet_chart_axis(
+ p_id=>wwv_flow_imp.id(77205666560253542666)
+,p_chart_id=>wwv_flow_imp.id(77205665448496542663)
+,p_axis=>'y'
+,p_is_rendered=>'on'
+,p_format_scaling=>'auto'
+,p_scaling=>'linear'
+,p_baseline_scaling=>'zero'
+,p_position=>'auto'
+,p_major_tick_rendered=>'on'
+,p_minor_tick_rendered=>'off'
+,p_tick_label_rendered=>'on'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
+);
+wwv_flow_imp_page.create_jet_chart_axis(
+ p_id=>wwv_flow_imp.id(77205665988656542663)
+,p_chart_id=>wwv_flow_imp.id(77205665448496542663)
+,p_axis=>'x'
+,p_is_rendered=>'on'
+,p_format_scaling=>'auto'
+,p_scaling=>'linear'
+,p_baseline_scaling=>'zero'
+,p_major_tick_rendered=>'on'
+,p_minor_tick_rendered=>'off'
+,p_tick_label_rendered=>'on'
+,p_tick_label_rotation=>'auto'
+,p_tick_label_position=>'outside'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(78191061492457154101)
+,p_plug_name=>'Grades - Custom Q2 & Q3 Colours'
+,p_region_template_options=>'#DEFAULT#:js-showMaximizeButton:t-Region--scrollBody'
+,p_escape_on_http_output=>'Y'
+,p_plug_template=>4072358936313175081
+,p_plug_display_sequence=>100
+,p_include_in_reg_disp_sel_yn=>'Y'
+,p_location=>null
+,p_plug_source_type=>'NATIVE_JET_CHART'
+,p_plug_query_num_rows=>15
+,p_plug_header=>'The Q2 and Q3 segments of the Box Plot can have custom colours defined, via columns of the series SQL query. The <strong>Q2 Color</strong> and <strong>Q3 Color</strong> series-level attributes reference the columns using &amp;COLUMN_VALUE. syntax.  W'
+||'here those series-level attribute are not set, then the default series colour will be applied to them.  The y-axis Format has also be set, to apply formatting to the values rendered in the tooltip - without decimal places.'
+);
+wwv_flow_imp_page.create_jet_chart(
+ p_id=>wwv_flow_imp.id(77205668626390544293)
+,p_region_id=>wwv_flow_imp.id(78191061492457154101)
+,p_chart_type=>'boxPlot'
+,p_animation_on_display=>'none'
+,p_animation_on_data_change=>'none'
+,p_orientation=>'vertical'
+,p_data_cursor=>'auto'
+,p_data_cursor_behavior=>'auto'
+,p_hide_and_show_behavior=>'none'
+,p_hover_behavior=>'none'
+,p_stack=>'off'
+,p_stack_label=>'off'
+,p_connect_nulls=>'Y'
+,p_value_position=>'auto'
+,p_sorting=>'label-asc'
+,p_fill_multi_series_gaps=>true
+,p_zoom_and_scroll=>'off'
+,p_tooltip_rendered=>'Y'
+,p_show_series_name=>true
+,p_show_group_name=>true
+,p_show_value=>true
+,p_show_label=>true
+,p_show_row=>true
+,p_show_start=>true
+,p_show_end=>true
+,p_show_progress=>true
+,p_show_baseline=>true
+,p_legend_rendered=>'on'
+,p_legend_position=>'auto'
+,p_overview_rendered=>'off'
+,p_horizontal_grid=>'auto'
+,p_vertical_grid=>'auto'
+,p_gauge_orientation=>'circular'
+,p_gauge_plot_area=>'on'
+,p_show_gauge_value=>true
+);
+wwv_flow_imp_page.create_jet_chart_series(
+ p_id=>wwv_flow_imp.id(77205670331564544294)
+,p_chart_id=>wwv_flow_imp.id(77205668626390544293)
+,p_seq=>10
+,p_name=>'School A'
+,p_data_source_type=>'SQL'
+,p_data_source=>'select course, schoola, ''navy'' q2_color, ''gold'' q3_color from eba_demo_chart_grades'
+,p_series_type=>'boxPlot'
+,p_items_value_column_name=>'SCHOOLA'
+,p_items_label_column_name=>'COURSE'
+,p_q2_color=>'&Q2_COLOR.'
+,p_q3_color=>'&Q3_COLOR.'
+,p_line_type=>'auto'
+,p_marker_rendered=>'auto'
+,p_marker_shape=>'auto'
+,p_assigned_to_y2=>'off'
+,p_items_label_rendered=>false
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
+);
+wwv_flow_imp_page.create_jet_chart_series(
+ p_id=>wwv_flow_imp.id(77205670979794544294)
+,p_chart_id=>wwv_flow_imp.id(77205668626390544293)
+,p_seq=>20
+,p_name=>'Median Grades'
+,p_data_source_type=>'SQL'
+,p_data_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select course, median(schoola) ',
+'from eba_demo_chart_grades',
+'group by course'))
+,p_series_type=>'line'
+,p_items_value_column_name=>'MEDIAN(SCHOOLA)'
+,p_items_label_column_name=>'COURSE'
+,p_line_type=>'curved'
+,p_marker_rendered=>'auto'
+,p_marker_shape=>'auto'
+,p_assigned_to_y2=>'off'
+,p_items_label_rendered=>false
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
+);
+wwv_flow_imp_page.create_jet_chart_axis(
+ p_id=>wwv_flow_imp.id(77205669183571544293)
+,p_chart_id=>wwv_flow_imp.id(77205668626390544293)
+,p_axis=>'x'
+,p_is_rendered=>'on'
+,p_format_scaling=>'auto'
+,p_scaling=>'linear'
+,p_baseline_scaling=>'zero'
+,p_major_tick_rendered=>'on'
+,p_minor_tick_rendered=>'off'
+,p_tick_label_rendered=>'on'
+,p_tick_label_rotation=>'auto'
+,p_tick_label_position=>'outside'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
+);
+wwv_flow_imp_page.create_jet_chart_axis(
+ p_id=>wwv_flow_imp.id(77205669759728544293)
+,p_chart_id=>wwv_flow_imp.id(77205668626390544293)
+,p_axis=>'y'
+,p_is_rendered=>'on'
+,p_format_type=>'decimal'
+,p_decimal_places=>0
+,p_format_scaling=>'auto'
+,p_scaling=>'linear'
+,p_baseline_scaling=>'zero'
+,p_position=>'auto'
+,p_major_tick_rendered=>'on'
+,p_minor_tick_rendered=>'off'
+,p_tick_label_rendered=>'on'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
+);
+wwv_flow_imp.component_end;
+end;
+/
